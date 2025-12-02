@@ -10,6 +10,7 @@
             background-color: #f0f0f0;
             margin: 0;
             padding: 20px;
+            transition: background-color 0.5s ease;
         }
 
         h1 {
@@ -25,6 +26,65 @@
         ul, ol {
             margin-left: 20px;
         }
+        
+        /* New styles for fortune cookie section */
+        .fortune-section {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 2px solid #fda14b;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .fortune-btn {
+            background-color: #fda14b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .fortune-btn:hover {
+            background-color: #e89142;
+        }
+        
+        .fortune-display {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #fff8f0;
+            border-left: 4px solid #fda14b;
+            font-style: italic;
+            min-height: 24px;
+        }
+        
+        /* New styles for color changer */
+        .color-changer-section {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 2px solid #0066cc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .color-btn {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .color-btn:hover {
+            background-color: #0055aa;
+        }
     </style>
 </head>
 <body>
@@ -36,6 +96,21 @@
         <li><a href="https://www.linkedin.com/feed/" target="_blank">LinkedIn</a></li>
         <li><a href="https://github.com/jacksonhgrimsley-alt" target="_blank">GitHub</a></li>
     </ul>   
+
+    <!-- Fortune Cookie Section - ADDED HERE -->
+    <div class="fortune-section">
+        <h2>🎴 Fortune Cookie</h2>
+        <p>Click the button to get your fortune!</p>
+        <button class="fortune-btn" onclick="getFortune()">Open Fortune Cookie</button>
+        <div class="fortune-display" id="fortuneText">Your fortune will appear here...</div>
+    </div>
+    
+    <!-- Background Color Changer Section - ADDED HERE -->
+    <div class="color-changer-section">
+        <h2>🎨 Background Color Changer</h2>
+        <p>Click the button to change the background color!</p>
+        <button class="color-btn" onclick="changeBackgroundColor()">Change Background Color</button>
+    </div>
 
     <h3>A Look at My Work</h3>
     <!-- Replace the src below with a working public image URL -->
@@ -56,5 +131,60 @@
         My name is Jackson Grimsley, and I am a computer science student. I have limited coding and computer science knowledge, 
         but I am learning. In my free time, I enjoy playing soccer and guitar and love spending time with friends.
     </p>
+
+    <!-- JavaScript for the fortune cookie and color changer - ADDED AT THE BOTTOM -->
+    <script>
+        // Array of fortunes
+        const fortunes = [
+            "A great opportunity will present itself to you soon.",
+            "Your creativity will lead to success in unexpected ways.",
+            "Good news is on its way to you.",
+            "A pleasant surprise awaits you this week.",
+            "Your hard work will soon pay off in exciting ways."
+        ];
+        
+        // Function to get a random fortune
+        function getFortune() {
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            const fortune = fortunes[randomIndex];
+            document.getElementById('fortuneText').innerHTML = `"${fortune}"`;
+            
+            // Optional: Add a fun cookie cracking effect
+            const fortuneBtn = document.querySelector('.fortune-btn');
+            fortuneBtn.textContent = "Get Another Fortune";
+            fortuneBtn.style.backgroundColor = "#0066cc";
+            
+            // Reset button color after a short delay
+            setTimeout(() => {
+                fortuneBtn.style.backgroundColor = "#fda14b";
+            }, 300);
+        }
+        
+        // Array of background colors
+        const backgroundColors = [
+            "#f0f0f0", // Original light gray
+            "#e6f7ff", // Light blue
+            "#f0ffe6"  // Light green
+        ];
+        
+        // Function to change background color
+        function changeBackgroundColor() {
+            // Get a random color from the array
+            const randomIndex = Math.floor(Math.random() * backgroundColors.length);
+            const newColor = backgroundColors[randomIndex];
+            
+            // Apply the new color to the body
+            document.body.style.backgroundColor = newColor;
+            
+            // Optional: Add a small visual feedback on the button
+            const colorBtn = document.querySelector('.color-btn');
+            colorBtn.textContent = "Change Again";
+            
+            // Reset button text after a short delay
+            setTimeout(() => {
+                colorBtn.textContent = "Change Background Color";
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
